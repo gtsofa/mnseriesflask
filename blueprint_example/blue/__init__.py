@@ -2,6 +2,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
+# accesing blueprints
 from blue.api.views import mod
 from blue.site.views import mod
 
