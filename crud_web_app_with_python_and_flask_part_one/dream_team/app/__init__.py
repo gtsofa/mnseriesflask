@@ -89,18 +89,8 @@ def create_app(config_name):
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)
 
-<<<<<<< HEAD
     from .home import home as home_blueprint
     app.register_blueprint(home_blueprint)
-=======
-    login_manager.init_app(app)
-    login_manager.login_message = "You must be logged in to access this page."
-    login_manager.login_view = "auth.login"
-
-    # @app.route('/')
-    # def hello_world():
-    #     return 'Hello, World!'
->>>>>>> 89744251a3e5e4056c6fa66f4f24aa49033f3a78
 
     return app
     
