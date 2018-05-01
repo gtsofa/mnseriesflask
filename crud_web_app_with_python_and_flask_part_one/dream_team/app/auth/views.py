@@ -33,6 +33,7 @@ def register():
     # load registration template
     return render_template('auth/register.html', form=form, title='Register')
 
+# Edit the login view to redirect to admin dashboard if employee is admin
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     """
@@ -50,8 +51,12 @@ def login():
             # log employee in
             login_user(employee)
 
-            # redirect to the dashboard page after login
-            return redirect(url_for('home.dashboard'))
+            # redirect to the appropriate dashboard page
+            if employee.is_admin:
+                return redirect(url_for('home.admin_dashboard'))
+            else:
+
+                return redirect(url_for('home.dashboard'))
 
         # when login details are incorrect
         else:
