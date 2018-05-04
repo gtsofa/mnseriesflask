@@ -41,7 +41,7 @@ def add_department():
     add_department=True
 
     form = DepartmentForm()
-    if form.validate.on_submit():
+    if form.validate_on_submit():
         department = Department(name=form.name.data, description=form.description.data)
 
         try:
