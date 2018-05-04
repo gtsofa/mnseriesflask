@@ -62,7 +62,7 @@ def add_department():
                             add_department=add_department, form=form, 
                             title="Add Department")
 
-@admin.route('departments/edit/<int:id>', methods['GET', 'POST'])
+@admin.route('departments/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
 def edit_department(id):
     """
