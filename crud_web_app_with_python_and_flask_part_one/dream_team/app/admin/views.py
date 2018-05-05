@@ -191,6 +191,8 @@ def delete_role(id):
     # redirects to the roles page
     return redirect(url_for('admin.list_roles'))
 
+    
+
     return render_template(title="Delete Role")
 
 # Employee Views
