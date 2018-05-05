@@ -148,4 +148,50 @@ def add_role():
     # load role template
     return render_template('admin/roles/role.html', add_role=add_role, form=form, title='Add Role')
 
+@admin.route('/roles/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit_role(id):
+    """
+    Edit a role
+    """
+    check_admin()
+
+    add_role = False
+    
+    role = Role.query.get_or_404(id)
+    form = RoleForm(obj=role)
+    if form.validate_on_submit():
+        role.name = form.name.data
+        role.description = form.description.data
+        db.session.add(role)
+        db.session.commit()
+        flash('You have successfully edited the role')
+
+        # redirect to the roles page
+        redirect(url_for('admin.list_roles'))
+
+    form.description.data = role.description
+    form.name.data = role.name
+    return render_template('admin/roles/role.html', add_role=add_role, form=form, title='Edit Role')
+
+@admin.route('/role/delete/<int:id>', methods=['GET', 'POST'])
+@login_required
+def delete_role(id):
+    """
+    Delete a role from the database
+    """
+    check_admin()
+
+
+    role = Role.query.get_or_404(id)
+    db.session.delete(role)
+    db.session.commit()
+    flash('You have successfully deleted the role.')
+
+    # redirects to the roles page
+    return redirect(url_for('admin.list_roles'))
+
+    return render_template(title="Delete Role")
+    
+
 
