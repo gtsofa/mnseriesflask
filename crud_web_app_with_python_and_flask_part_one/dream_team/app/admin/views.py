@@ -131,7 +131,7 @@ def add_role():
     
     form = RoleForm()
     if form.validate_on_submit():
-        role = Role(role=form.name.data, description=form.description.data)
+        role = Role(name=form.name.data, description=form.description.data)
 
         try:
             # add role to the database
