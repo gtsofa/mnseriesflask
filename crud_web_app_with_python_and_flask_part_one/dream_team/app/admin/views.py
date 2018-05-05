@@ -168,7 +168,7 @@ def edit_role(id):
         flash('You have successfully edited the role')
 
         # redirect to the roles page
-        redirect(url_for('admin.list_roles'))
+        return redirect(url_for('admin.list_roles'))
 
     form.description.data = role.description
     form.name.data = role.name
