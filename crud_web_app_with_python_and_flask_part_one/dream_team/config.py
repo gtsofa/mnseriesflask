@@ -6,13 +6,14 @@ class Config(object):
     """
 
     # Put any configurations here that are common across all environments
+    DEBUG=True
 
 class DevelopmentConfig(Config):
     """
     Development configurations
     """
 
-    DEBUG = True
+    #DEBUG = True
     SQLALCHEMY_ECHO = True
 
 class ProductionConfig(Config):
@@ -22,7 +23,14 @@ class ProductionConfig(Config):
 
     DEBUG = False
 
+class TestingConfig(Config):
+    """
+    Testing configurations
+    """
+    TESTING = True
+
 app_config = {
     'development': DevelopmentConfig,
-    'production': ProductionConfig
+    'production': ProductionConfig,
+    'testing': TestingConfig
 }
