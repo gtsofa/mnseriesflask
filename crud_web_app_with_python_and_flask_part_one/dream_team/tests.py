@@ -124,7 +124,7 @@ class TestViews(TestBase):
         Test that dashboard is inaccessible without login
         and redirects to login page then to dashboard
         """
-        target_url = url_for('home.homepage')
+        target_url = url_for('home.dashboard')
         redirect_url = url_for('auth.login', next=target_url)
         response = self.client.get(target_url)
         self.assertEqual(response.status_code, 302)
