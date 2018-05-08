@@ -53,6 +53,8 @@ class TestBase(TestCase):
         db.drop_all()
 
 class TestModels(TestBase):
+    # test models by querying the database to check 
+    # correct number of records exist in each table
 
     def test_employee_model(self):
         """
@@ -90,6 +92,7 @@ class TestModels(TestBase):
         self.assertEqual(Role.query.count(), 1)
 
 class TestViews(TestBase):
+    # Test to ensure expected status code is returned
 
     def test_homepage_view(self):
         """
@@ -172,6 +175,7 @@ class TestViews(TestBase):
         self.assertRedirects(response, redirect_url)
 
 class TestErrorPage(TestBase):
+    # Ensure that error pages are shown when the respective error occurs
 
     def test_403_forbidden(self):
         """
@@ -193,7 +197,7 @@ class TestErrorPage(TestBase):
         self.assertEqual(response.status_code, 404)
         self.assertTrue('404 Error' in response.data)
 
-    def test_500_internal-server_error(self):
+    def test_500_internal_server_error(self):
         """
         Create routes to abort the request with the 500 Error
         """
